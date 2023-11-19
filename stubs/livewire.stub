@@ -1,0 +1,17 @@
+<?php
+
+namespace [namespace];
+
+use Livewire\Component;
+use Illuminate\Contracts\View\View;
+use Livewire\Attributes\Layout;
+
+class [class] extends Component
+{
+
+     #[Layout('layouts.app')]
+    public function render(): View
+    {
+        return view('[view]');
+    }
+}
