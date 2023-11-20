@@ -9,15 +9,15 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ExpenseFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [
-            //
+            'user_id' => \App\Models\User::factory(),
+            'type' => $this->faker->randomElement([1, 2]),
+            'expense_date' => $this->faker->dateTime(),
+            'amount' => $this->faker->numberBetween(0, 100000),
+            'description' => $this->faker->sentence(),
+
         ];
     }
 }
