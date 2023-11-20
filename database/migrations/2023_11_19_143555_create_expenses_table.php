@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('description');
             $table->integer('type');
             $table->integer('amount');
+            $table->string('photo')->nullable();
+            $table->dateTime('expense_date')->nullable();
+
             $table->timestamps();
         });
     }

@@ -3,13 +3,16 @@
 namespace App\Livewire\Expense;
 
 use App\Models\Expense;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Layout;
+use Livewire\WithFileUploads;
 
 class Edit extends Component
 {
+    use WithFileUploads;
 
     #[Rule('required')]
     public $amount;
@@ -19,6 +22,9 @@ class Edit extends Component
 
     #[Rule('required')]
     public $type;
+
+    #[Rule(['image', 'nullable'])]
+    public $photo;
 
     public Expense $expense;
 
@@ -33,10 +39,19 @@ class Edit extends Component
     {
         $this->validate();
 
+        if($this->photo) {
+            if(Storage::disk('public')->exists($this->expense->photo)) {
+                Storage::disk('public')->delete($this->expense->photo);
+            }
+
+            $this->photo = $this->photo->store('expenses-photos', 'public');
+        }
+
         $this->expense->update([
             'amount' => $this->amount,
             'description' => $this->description,
             'type' => $this->type,
+            'photo' => $this->photo ?? $this->expense->photo
         ]);
         session()->flash('success', 'Expense updated successfully');
     }

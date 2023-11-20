@@ -33,6 +33,20 @@
                 </x-select>
                 <x-input-error for="type"/>
             </div>
+
+            <div class="col-span-6 sm:col-span-4">
+                <x-label for="photo">Foto comprovante</x-label>
+                <x-input wire:model="photo" type="file" class="w-full"/>
+                <x-input-error for="photo" />
+
+                <img class="rounded-lg max-w-xs mt-4" src="{{ route('expenses.photo', $expense->id) }}" alt="{{ $expense->name }}"/>
+            </div>
+
+            <div class="col-span-6 sm:col-span-4">
+                <x-label for="date">Data</x-label>
+                <x-input wire:model="date" type="date" class="w-full"/>
+                <x-input-error for="date"/>
+            </div>
         </x-slot>
 
         <x-slot name="actions">

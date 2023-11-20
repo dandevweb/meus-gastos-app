@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <x-message />
+    <x-message/>
 
     <x-form-section submit="store">
         <x-slot name="title">Criar Registro</x-slot>
@@ -15,13 +15,13 @@
             <div class="col-span-6 sm:col-span-4">
                 <x-label for="description">Descrição</x-label>
                 <x-input wire:model="description" type="text" class="w-full"/>
-               <x-input-error for="description" />
+                <x-input-error for="description"/>
             </div>
 
             <div class="col-span-6 sm:col-span-4">
                 <x-label for="amount">Valor</x-label>
                 <x-input wire:model="amount" type="text" class="w-full"/>
-                <x-input-error for="amount" />
+                <x-input-error for="amount"/>
             </div>
 
             <div class="col-span-6 sm:col-span-4">
@@ -31,7 +31,18 @@
                     <option value="1">Entrada</option>
                     <option value="2">Saída</option>
                 </x-select>
-                <x-input-error for="type" />
+                <x-input-error for="type"/>
+            </div>
+
+            <div class="col-span-6 sm:col-span-4">
+                <x-label for="photo">Foto comprovante</x-label>
+                <x-input wire:model="photo" type="file" class="w-full"/>
+                <x-input-error for="photo"/>
+
+                @if($photo)
+                    <img class="rounded-lg max-w-xs mt-4" src="{{ $photo->temporaryUrl() }}" alt=""/>
+                @endif
+
             </div>
         </x-slot>
 

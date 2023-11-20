@@ -13,6 +13,8 @@ class Expense extends Model
 
     protected $guarded = ['id'];
 
+    protected $dates = ['expense_date'];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
