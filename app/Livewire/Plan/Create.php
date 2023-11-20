@@ -3,6 +3,8 @@
 namespace App\Livewire\Plan;
 
 use App\Models\Plan;
+use App\Services\PagSeguro\PlanCreateService;
+use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Layout;
@@ -24,9 +26,13 @@ class Create extends Component
         $this->validate();
 
         $plan = $this->plan;
-        $plan['reference'] = 'PAGSEGURO-REFERENCE';
+
+        $planPagSeguroReference = (new PlanCreateService())->create($plan);
+
+        $plan['reference'] = $planPagSeguroReference;
 
         Plan::create($plan);
+
 
         session()->flash('success', 'Plano criado com sucesso!');
 
@@ -34,7 +40,7 @@ class Create extends Component
 
     }
 
-     #[Layout('layouts.app')]
+    #[Layout('layouts.app')]
     public function render(): View
     {
         return view('livewire.plan.create');
