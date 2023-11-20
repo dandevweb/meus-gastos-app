@@ -13,7 +13,7 @@ class Expense extends Model
 
     protected $guarded = ['id'];
 
-    protected $dates = ['expense_date'];
+    protected $casts = ['expense_date' => 'datetime'];
 
     public function user(): BelongsTo
     {
@@ -23,8 +23,8 @@ class Expense extends Model
     public function amount(): Attribute
     {
         return Attribute::make(
-            set: fn ($value) => $value * 100,
-            get: fn ($value) => $value / 100,
+            set: fn($value) => $value * 100,
+            get: fn($value) => $value / 100,
         );
     }
 }

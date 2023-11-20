@@ -43,9 +43,8 @@
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <x-label for="date">Data</x-label>
-                <x-input wire:model="date" type="date" class="w-full"/>
-                <x-input-error for="date"/>
+                <x-label for="expense_date">Data</x-label>
+                <x-input wire:model="expenseDate" type="datetime-local" class="w-full"/>
             </div>
         </x-slot>
 

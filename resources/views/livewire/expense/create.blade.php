@@ -42,7 +42,12 @@
                 @if($photo)
                     <img class="rounded-lg max-w-xs mt-4" src="{{ $photo->temporaryUrl() }}" alt=""/>
                 @endif
+            </div>
 
+            <div class="col-span-6 sm:col-span-4">
+                <x-label for="expense_date">Data</x-label>
+                <x-input wire:model="expenseDate" type="datetime-local" class="w-full"/>
+                <small class="text-gray-400">Preencha este campo se a data for diferente de HOJE {{ now()->format('d/m/Y H:i') }}</small>
             </div>
         </x-slot>
 

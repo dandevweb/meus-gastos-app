@@ -35,7 +35,7 @@
                     </span>
                 </x-table.td>
                 <x-table.td>{{ $expense->type }}</x-table.td>
-                <x-table.td>{{ $expense->created_at->format('d/m/Y H:i') }}</x-table.td>
+                <x-table.td>{{ $expense->expense_date ? $expense->expense_date->format('d/m/Y H:i') : $expense->created_at->format('d/m/Y H:i') }}</x-table.td>
                 <x-table.td class="flex gap-3 justify-end">
                     <x-button-link href="{{ route('expenses.edit', $expense->id) }}">
                         Editar

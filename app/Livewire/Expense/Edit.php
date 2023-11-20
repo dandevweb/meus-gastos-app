@@ -26,6 +26,9 @@ class Edit extends Component
     #[Rule(['image', 'nullable'])]
     public $photo;
 
+    #[Rule('nullable')]
+    public $expenseDate;
+
     public Expense $expense;
 
     public function mount(): void
@@ -33,6 +36,7 @@ class Edit extends Component
         $this->amount = $this->expense->amount;
         $this->description = $this->expense->description;
         $this->type = $this->expense->type;
+        $this->expenseDate = $this->expense->expense_date ?? $this->expense->created_at;
     }
 
     public function update(Expense $expense): void
@@ -51,7 +55,8 @@ class Edit extends Component
             'amount' => $this->amount,
             'description' => $this->description,
             'type' => $this->type,
-            'photo' => $this->photo ?? $this->expense->photo
+            'photo' => $this->photo ?? $this->expense->photo,
+            'expense_date' => $this->expenseDate,
         ]);
         session()->flash('success', 'Expense updated successfully');
     }

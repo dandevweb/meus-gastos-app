@@ -25,6 +25,9 @@ class Create extends Component
     #[Rule(['image', 'nullable'])]
     public $photo;
 
+    #[Rule('nullable')]
+    public $expenseDate;
+
     public function store(): void
     {
         $this->validate();
@@ -38,6 +41,7 @@ class Create extends Component
             'description' => $this->description,
             'type' => $this->type,
             'photo' => $this->photo,
+            'expense_date' => $this->expenseDate
         ]);
 
         if (!$success) {
